@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Translation Helper</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            color: black;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/snowflakes.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-family: 'Cursive', sans-serif;
+            color: #333;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px #fff;
+        }
+
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            outline: none;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.2em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            width: 10px;
+            height: 10px;
+            background: white;
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .christmas-tree {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            width: 150px;
+            height: 250px;
+            background-image: url('https://img.icons8.com/ios/452/christmas-tree.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 10;
+        }
+
+        .gingerbread-man {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            width: 100px;
+            height: 200px;
+            background-image: url('https://img.icons8.com/ios/452/gingerbread-man.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <h1>Christmas Translation Helper</h1>
+    <div class="container">
+        <input type="text" id="inputText" placeholder="Enter text...">
+        <button onclick="translate()">Translate</button>
+        <p id="outputText"></p >
+    </div>
+
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </div>
+
+    <div class="christmas-tree"></div>
+    <div class="gingerbread-man"></div>
+
+    <script>
+        function translate() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText');
+
+            if (input.trim() === "") {
+                output.innerText = "Please enter some text to translate!";
+                return;
+            }
+
+            // Simulating translation by reversing the input (replace with actual translation logic if needed)
+            const translatedText = "Translated (mock Sami language): " + input.split("").reverse().join("");
+            output.innerText = translatedText;
+        }
+
+        // Adding dynamic snowflakes
+        setInterval(() => {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.querySelector('.snowflakes').appendChild(snowflake);
+            setTimeout(() => snowflake.remove(), 5000);
+        }, 200);
+    </script>
+</body>
+</html>
